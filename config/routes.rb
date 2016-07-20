@@ -1,4 +1,18 @@
-Rails.application.routes.draw do
+
+  Rails.application.routes.draw do
+root to: 'projects#index'
+	devise_for :users
+	resources :projects do
+  	  resources :colors, only: [:index, :show]
+  end
+  		scope "/api" do
+  		   resources :projects
+  		   resources :colors
+
+  		   post "/project/:id/colors/add" => "project#add_color"
+  		  get '/project/:id/details', to: "projects#details"
+  	 end
+   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -34,8 +48,7 @@ Rails.application.routes.draw do
 
   # Example resource route with more complex sub-resources:
   #   resources :products do
-  #     resources :comments
-  #     resources :sales do
+  #     #     resources :sales do
   #       get 'recent', on: :collection
   #     end
   #   end
@@ -53,4 +66,3 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
-end
