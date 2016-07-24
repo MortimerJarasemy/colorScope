@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
     end
 
 	private
-	   def post_params
+	def post_params
 	   params.require(:post).permit(:title, :content, :category, :image)
 	end
 end

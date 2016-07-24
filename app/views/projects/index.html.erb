@@ -1,7 +1,39 @@
-
+<div class='nav_bar'>#</div>
 <% if @projects %>
 	<% @projects.each do |project| %>
-		<li><%= link_to project.name, project_path(:id => project.id)  %></li>
+		<li><div class='container'><h1><%= project.name project_path(:id => project.id) %></h1>
+			<ul>
+				<%= form_for project do %>
+				<%= fields_for :palette, project.palette do |palette| %>
+
+				  <%= palette.label 'background_dark_color' %>:
+				  <%= palette.text_field :background_dark_color, placeholder: '@palette.background_dark_color' %><br/>
+
+				  <%= palette.label 'background_light_color' %>:
+				  <%= palette.text_field :background_light_color, placeholder: "@palette.background_light_color" %><br/>
+
+				  <%= palette.label 'dark_color1' %>:
+				  <%= palette.text_field :dark_color1, placeholder: "@palette.dark_color1" %><br/>
+
+				  <%= palette.label 'dark_color2' %>:
+				  <%= palette.text_field :dark_color2, placeholder: "@palette.dark_color2" %><br/>
+
+				  <%= palette.label 'light_color1' %>:
+				  <%= palette.text_field :light_color1, placeholder: "@palette.light_color1" %><br/>
+
+				  <%= palette.label 'light_color2' %>:
+				  <%= palette.text_field :light_color2, placeholder: "@palette.light_color2" %><br/>
+
+			      <%= palette.submit %>
+
+				  <%= link_to 'Destroy',  project,  method: :delete, data: { confirm: 'Are you sure?' } %>
+
+				<% end %>
+				</div>
+			</ul>
+
+		<% end %></li>
 	<%end%>
 <%end%>
-<%= link_to "create new project", new_project_path %>
+<div class='circle'><%= link_to "+", new_project_path %></div>
+<button type="button"><%= link_to "+", new_project_path %></button>

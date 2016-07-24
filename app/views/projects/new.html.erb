@@ -1,0 +1,35 @@
+<%= form_for @project do |f| %>
+<div class='container'>
+	<div class='t_center'>
+		<%= f.label :name %>
+		<%= f.text_field :name %><br/></div>
+	<%= f.select(:option) do %>
+	  <% [['optiona', 1], ['optionb', 2]].each do |f| -%>
+	    <%= content_tag(:option, f.first, value: f.last) %>
+	  <% end %>
+	<% end %><br/>
+
+	<%= fields_for :palette do |palette| %>
+
+	  <%= palette.label 'background_dark_color' %>:
+	  <%= palette.text_field :background_dark_color %><br/>
+
+	  <%= palette.label 'background_light_color' %>:
+	  <%= palette.text_field :background_light_color %><br/>
+
+	  <%= palette.label 'dark_color1' %>:
+	  <%= palette.text_field :dark_color1 %><br/>
+
+	  <%= palette.label 'dark_color2' %>:
+	  <%= palette.text_field :dark_color2 %><br/>
+
+	  <%= palette.label 'light_color1' %>:
+	  <%= palette.text_field :light_color1 %><br/>
+
+	  <%= palette.label 'light_color2' %>:
+	  <%= palette.text_field :light_color2 %><br/>
+
+	<% end %>
+  <%= f.submit %>
+</div>
+<% end %>

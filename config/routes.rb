@@ -3,7 +3,7 @@
 root to: 'projects#index'
 	devise_for :users
 	resources :projects do
-  	  resources :colors, only: [:index, :show]
+  	  resources :palettes, only: [:index, :show]
   end
   		scope "/api" do
   		   resources :projects

@@ -1,0 +1,6 @@
+<% if @project %>
+	<% @projects.each do |project| %>
+
+		<li><%= link_to project.name, project_path(:id => project.id)  %></li>
+	<%end%>
+<%end%>

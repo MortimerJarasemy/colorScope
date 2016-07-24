@@ -1,7 +1,44 @@
 
 <h1><%= @project.name %></h1>
 
+
+
+
+
 <h3>colors:</h3>
-	<%=@project.colors%>
-<h3>bread type:</h3>
+<h3>mode:</h3>
 	<%=@project.option%>
+ <h3>Project palette:</h3>
+	<ul>
+			<li> <%= @palette.background_dark_color %> </li>
+			<li> <%= @palette.background_light_color %> </li>
+			<li> <%= @palette.dark_color1 %> </li>
+			<li> <%= @palette.dark_color2 %> </li>
+			<li> <%= @palette.light_color1 %> </li>
+			<li> <%= @palette.light_color2 %> </li>
+			<li> <%= @palette.id %> </li>
+	</ul>
+
+
+	<%= fields_for :palette do |palette| %>
+
+	  <%= palette.label 'background_dark_color' %>:
+	  <%= palette.text_field :background_dark_color, placeholder: "@palette.background_dark_color" %><br/>
+
+	  <%= palette.label 'background_light_color' %>:
+	  <%= palette.text_field :background_light_color, placeholder: "@palette.background_light_color" %><br/>
+
+	  <%= palette.label 'dark_color1' %>:
+	  <%= palette.text_field :dark_color1, placeholder: "@palette.dark_color1" %><br/>
+
+	  <%= palette.label 'dark_color2' %>:
+	  <%= palette.text_field :dark_color2, placeholder: "@palette.dark_color2" %><br/>
+
+	  <%= palette.label 'light_color1' %>:
+	  <%= palette.text_field :light_color1, placeholder: "@palette.light_color1" %><br/>
+
+	  <%= palette.label 'light_color2' %>:
+	  <%= palette.text_field :light_color2, placeholder: "@palette.light_color2" %><br/>
+
+      <%= palette.submit %>
+	<% end %>
