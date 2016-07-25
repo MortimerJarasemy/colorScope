@@ -5,7 +5,7 @@ class Api::V1::ProjectsController < ApplicationController
 	end
 
 	def create
-	  @palette = Palette.create(color_params)
+	  @palette = Palette.create
 	  render json: palette
 	end
 

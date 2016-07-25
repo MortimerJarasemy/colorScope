@@ -1,16 +1,25 @@
+
+
+
+
 <div class='nav_bar'>#</div>
 <% if @projects %>
 	<% @projects.each do |project| %>
-		<li><div class='container'><h1><%= project.name project_path(:id => project.id) %></h1>
-			<ul>
+		<ul><div class='container'><h1><%=project.name %> </h1>
+			<li>
 				<%= form_for project do %>
 				<%= fields_for :palette, project.palette do |palette| %>
+				<div id="pick<%=project.id%>"> index </div>
 
+				<input type="range" id="<%=project.id%>" min="0" max="16777215" oninput="updateTextInput(this.value,this.id);">
+
+				<input type="text" id="textOutput<%=project.id%>"><br>
+				<%=project.id%><br>
 				  <%= palette.label 'background_dark_color' %>:
 				  <%= palette.text_field :background_dark_color, placeholder: '@palette.background_dark_color' %><br/>
 
 				  <%= palette.label 'background_light_color' %>:
-				  <%= palette.text_field :background_light_color, placeholder: "@palette.background_light_color" %><br/>
+				  <%= palette.text_field :background_light_color, placeholder: "#{palette}" %><br/>
 
 				  <%= palette.label 'dark_color1' %>:
 				  <%= palette.text_field :dark_color1, placeholder: "@palette.dark_color1" %><br/>
@@ -30,10 +39,10 @@
 
 				<% end %>
 				</div>
-			</ul>
+			</li>
 
-		<% end %></li>
+		<% end %></ul>
 	<%end%>
 <%end%>
-<div class='circle'><%= link_to "+", new_project_path %></div>
-<button type="button"><%= link_to "+", new_project_path %></button>
+
+<%= button_to "+", new_project_path, method: "get" %>
