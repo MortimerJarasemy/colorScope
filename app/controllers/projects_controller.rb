@@ -5,7 +5,6 @@ class ProjectsController < ApplicationController
 	def index
 	  @projects = Project.all
 	  @project = Project.new
-
 	end
 
 	def new
@@ -20,6 +19,7 @@ class ProjectsController < ApplicationController
 	end
 
 	def show
+	  accepts_nested_attributes_for :palettes, :colors
 	  @project = Project.find_by(id: params[:id])
 	  @palette = @project.palette
 	  unless @project
@@ -27,7 +27,6 @@ class ProjectsController < ApplicationController
 	    status: 404
 	    return
 	  end
-	  #render json: project
 	end
 
 	def update
@@ -78,7 +77,15 @@ class ProjectsController < ApplicationController
 	end
 
 	def palette_params
-      	params.require(:palette).permit(:palette, :palette_attributes => [ :id, :name, :_destroy ])
+      	params.require(:palette).permit(
+		:id,
+		:project_id,
+		:background_dark_color,
+		:background_light_color,
+		:light_color1,
+		:light_color2,
+		:dark_color1,
+		:dark_color2)
     end
 
 

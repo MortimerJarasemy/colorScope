@@ -11,23 +11,25 @@
 
 	<%= fields_for :palette do |palette| %>
 
+
+
 	  <%= palette.label 'background_dark_color' %>:
-	  <%= palette.text_field :background_dark_color %><br/>
+	  <%= palette.text_field  :background_dark_color,:maxlength => '6' %><br/>
 
 	  <%= palette.label 'background_light_color' %>:
-	  <%= palette.text_field :background_light_color %><br/>
+	  <%= palette.text_field :background_light_color,:maxlength => '6' %><br/>
 
 	  <%= palette.label 'dark_color1' %>:
-	  <%= palette.text_field :dark_color1 %><br/>
+	  <%= palette.text_field :dark_color1,:maxlength => '6' %><br/>
 
 	  <%= palette.label 'dark_color2' %>:
-	  <%= palette.text_field :dark_color2 %><br/>
+	  <%= palette.text_field :dark_color2,:maxlength => '6' %><br/>
 
 	  <%= palette.label 'light_color1' %>:
-	  <%= palette.text_field :light_color1 %><br/>
+	  <%= palette.text_field :light_color1,:maxlength => '6' %><br/>
 
 	  <%= palette.label 'light_color2' %>:
-	  <%= palette.text_field :light_color2 %><br/>
+	  <%= palette.text_field :light_color2,:maxlength => '6' %><br/>
 
 	<% end %>
   <%= f.submit %>

@@ -2,7 +2,7 @@
 
 
 
-<div class='nav_bar'>#</div>
+<div class='nav_bar'> <p><img id='logo' src="init.png" alt="logo" height="18" width="18"></p> </div>
 <% if @projects %>
 	<% @projects.each do |project| %>
 		<ul><div class='container'><h1><%=project.name %> </h1>
@@ -11,32 +11,58 @@
 				<%= fields_for :palette, project.palette do |palette| %>
 				<div id="pick<%=project.id%>"> index </div>
 
-				<input type="range" id="<%=project.id%>" min="0" max="16777215" oninput="updateTextInput(this.value,this.id);">
+				<input type="range" id="<%=project.id%>" class='slider' min="0" max="16777215" oninput="updateTextInput(this.value,this.id);">
+				<!-- <input type="text" id="textOutput<%=project.id%>"><br> -->
 
-				<input type="text" id="textOutput<%=project.id%>"><br>
+				<div class='colorScope'>
+				    <div class='mediumSquare'><div id="colorBackgroundDark<%=project.id%>"></div>
+				        <div id="Dark1<%=project.id%>">
+				        </div>
+				        <div id="Dark2<%=project.id%>">
+				        </div>
+				    </div>
+				    <div class='mediumSquare'><div id="colorBackgroundLight<%=project.id%>"></div>
+				        <div id="Light1<%=project.id%>">
+				        </div>
+				        <div id="Light2<%=project.id%>">
+				        </div>
+				    </div>
+				</div>
+
+
 				<%=project.id%><br>
-				  <%= palette.label 'background_dark_color' %>:
-				  <%= palette.text_field :background_dark_color, placeholder: '@palette.background_dark_color' %><br/>
 
-				  <%= palette.label 'background_light_color' %>:
-				  <%= palette.text_field :background_light_color, placeholder: "#{palette}" %><br/>
 
-				  <%= palette.label 'dark_color1' %>:
-				  <%= palette.text_field :dark_color1, placeholder: "@palette.dark_color1" %><br/>
+				<table style="width:100%">
+				    <tr>
+					  <%= palette.label 'background_dark_color' %>:
+					  <%= palette.text_field :background_dark_color,:id => "Darkbg#{@project.id}",:maxlength => '6', placeholder: "#{@project.palette}" %>
 
-				  <%= palette.label 'dark_color2' %>:
-				  <%= palette.text_field :dark_color2, placeholder: "@palette.dark_color2" %><br/>
+					  <%= palette.label 'background_light_color' %>:
+					  <%= palette.text_field :background_light_color,:maxlength => '6', placeholder: "#{@project.palette}" %><br/><br/>
+					</tr>
+					  <%= palette.label 'dark_color1' %>:
+					  <%= palette.text_field :dark_color1,:maxlength => '6', placeholder: "#{@project.palette}" %>
 
-				  <%= palette.label 'light_color1' %>:
-				  <%= palette.text_field :light_color1, placeholder: "@palette.light_color1" %><br/>
+					  <%= palette.label 'dark_color2' %>:
+					  <%= palette.text_field :dark_color2,:maxlength => '6', placeholder: "#{@project.palette}" %>
+					<tr>
+					  <%= palette.label 'light_color1' %>:
+					  <%= palette.text_field :light_color1,:maxlength => '6', placeholder: "#{@project.palette}" %>
 
-				  <%= palette.label 'light_color2' %>:
-				  <%= palette.text_field :light_color2, placeholder: "@palette.light_color2" %><br/>
+	  				  <%= palette.label 'light_color2' %>:
+	  				  <%= palette.text_field :light_color2,:maxlength => '6', placeholder: "#{@project.palette}" %>
 
-			      <%= palette.submit %>
+					</tr>
 
-				  <%= link_to 'Destroy',  project,  method: :delete, data: { confirm: 'Are you sure?' } %>
+					</table>
+				<ul>
 
+
+			      <%= palette.submit :class => "button"%>
+
+				  <%= link_to 'Destroy',  project,  method: :delete%>
+					<!-- "#{@project.palette} , data: { confirm: 'Are you sure?' } " -->
 				<% end %>
 				</div>
 			</li>
@@ -44,5 +70,6 @@
 		<% end %></ul>
 	<%end%>
 <%end%>
+<%= button_to "+", new_project_path, method: "get",:class => "add" %>
 
-<%= button_to "+", new_project_path, method: "get" %>
+<footer>all rights reserved to colorScope.inc</footer>
